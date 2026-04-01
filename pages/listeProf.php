@@ -8,7 +8,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <style>
-   
+    .left-container{
+            background-color: #2c3e50;
+            width: 20%;
+            height: 80vh;
+            position: fixed;
+            top: 80px;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .container-principal{
+            background-color: #f5f7fa;
+            display: flex;
+            margin-top: 80px;
+            min-height: 80vh;
+        }
+        .right-container{
+            width: 80%;
+            margin-left: 20%;
+            padding: 30px;
+        }
+        .dashboard-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+        .card-title{
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .card-value{
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .card-icon{
+            font-size: 24px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .table-container{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td{
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        tr:hover{
+            background-color: #f9f9f9;
+        }
+        h2{
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .profile-etudiant{
+            padding: 20px;
+            border-bottom: 1px solid #34495e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .nav-menu{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-menu li{
+            margin: 0;
+        }
+        .nav-link{
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .nav-link:hover{
+            background-color: #34495e;
+            border-left-color: #3498db;
+            color: #3498db;
+            padding-left: 25px;
+        }
+        .nav-link i{
+            margin-right: 12px;
+            font-size: 18px;
+        }
 </style>
 <body>
 
@@ -35,7 +144,7 @@
             <li><a href="listefiliere.php" class="nav-link"><i class="fas fa-layer-group"></i> Filière</a></li>
             <li><a href="listeProf.php" class="nav-link"><i class="fas fa-chalkboard-user"></i> Professeurs</a></li>
             <li><a href="" class="nav-link"><i class="fas fa-cog"></i> Paramètres</a></li>
-            <li><a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li> 
+            <li><a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
         </ul>
     </div>
     <div class="right-container">
@@ -64,7 +173,7 @@
         </div>
 
         <div class="table-container">
-            <h2>Étudiants Récents</h2>
+            <h2>Liste des Professeurs</h2>
             <table>
                 <thead>
                     <tr>

@@ -1,166 +1,220 @@
-<?php
-include("../config/db.php");
-$req_fi= $conn->prepare("SELECT * FROM filieres ORDER BY libelle_fi");
-$req_fi->execute();
-
-$req_niv= $conn->prepare("SELECT * FROM niveau ORDER BY libelle_niv");
-$req_niv->execute();
-?>
-
 <!DOCTYPE html>
-<html lang="fr">
+ <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface Étudiant/Parents - EduNotes</title>
+    <title>Tableau de Bord Étudiant</title>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #fdf6e9; /* Fond beige clair comme sur votre image */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        .form-card {
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 500px;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        h1 {
-            color: #1a2b48;
-            text-align: center;
-            font-size: 1.8rem;
+        
+        header h1 {
+            color: #333;
+            font-size: 28px;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-bottom: 30px;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box; /* Évite que l'input dépasse */
-            font-size: 1rem;
-        }
-
-        .row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-next {
-            width: 100%;
-            padding: 15px;
-            background-color: #9cd4a5; /* Vert doux comme sur votre bouton "Étudiant" */
-            border: none;
+        
+        .card {
+            background: white;
+            padding: 25px;
             border-radius: 10px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: opacity 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .btn-next:hover {
-            opacity: 0.9;
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .card h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .card-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .table-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .table-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table thead {
+            background: #f8f9fa;
+        }
+        
+        table th {
+            padding: 15px;
+            text-align: left;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
         }
     </style>
 </head>
 <body>
-
-    <div class="form-card">
-        <h1>Veuillez remplir tous les champs</h1>
+    <div class="container">
+        <header>
+            <div>
+                <h1>📚 Tableau de Bord Étudiant</h1>
+            </div>
+            <div class="user-info">
+                <p><strong>Bienvenue</strong></p>
+                <p>Étudiant ID: E001234</p>
+            </div>
+        </header>
         
-        <form action="../logique/etudiant.php" method="POST">
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h2>Moyenne Générale</h2>
+                <div class="card-value">14.5/20</div>
+                <p>Semestre actuel</p>
+            </div>
             
-
-            <div class="row">
-                <div class="form-group" style="flex:1">
-                    <label>Nom(s)</label>
-                    <input type="text" name="nom" required>
-                </div>
-                <div class="form-group" style="flex:1">
-                    <label>Prénom(s)</label>
-                    <input type="text" name="prenom" required>
-                </div>
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h2>Cours Validés</h2>
+                <div class="card-value">8</div>
+                <p>Parmi 12 cours</p>
             </div>
-            <div class="row">
-                <div>
-                    <label>Date de naissance</label>
-                    <input type="date" name="dnaiss" placeholder="Ex: jj/mm/aaaa" required>
-                </div>
-                <div>
-                    <label>Sexe</label>
-                    <select name="sexe" id="">
-                        <option value="">Choisie le sexe</option>
-                        <option value="M">Masculin</option>
-                        <option value="F">Féminin</option>
-                    </select>
             
-                </div>
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h2>Total des Cours</h2>
+                <div class="card-value">12</div>
+                <p>Semestre actuel</p>
             </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="exemple@ecole.com" required>
-            </div>
-
-            <div class="form-group">
-                <label>Filière</label>
-                <select name="filiere" required>
-                    <option value="">Sélectionnez votre filièree</option>
-                    <?php
-                    while($fi=$req_fi->fetch()){?>
-                        <option value="<?= $fi["Code_fi"]?>"><?= $fi["libelle_fi"]?></option>
-                    <?php
-                    }
-                    ?>
-                    
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Niveau </label>
-                <select name="niveau" required>
-                    <option value="">Sélectionnez votre niveau</option>
-                    <?php
-                    while($niv=$req_niv->fetch()){?>
-                        <option value="<?= $niv["Code_niv"]?>"><?= $niv["libelle_niv"]?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-    <label>Créez votre mot de passe</label>
-    <input type="password" name="mdp" placeholder="Minimum 6 caractères" required>
-</div>
-
-<a href="relevé.etudiant.php">
-    
-</a><button type="submit" class="btn-inscription">S'inscrire</button>
             
-        </form>
+            <div class="card">
+                <div class="card-icon">❌</div>
+                <h2>Cours non Validés</h2>
+                <div class="card-value">4</div>
+                <p>Parmi 12 cours</p>
+            </div>
+        </div>
+        
+        <div class="table-section">
+            <h2>📖 Mes Cours et Notes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cours</th>
+                        <th>Professeur</th>
+                        <th>Note</th>
+                        <th>Moyenne Classe</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exemple de ligne de données -->
+                    <tr>
+                        <td>Mathématiques</td>
+                        <td>Dr. Martin</td>
+                        <td>16/20</td>
+                        <td>13.2/20</td>
+                        <td><span class="badge badge-success">Validé</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 </body>
 </html>

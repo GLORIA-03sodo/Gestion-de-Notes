@@ -1,114 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<div class="container">
-         <title>Gestion Universitaire - Secrétariat-Etudiants</title>
-        <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Universitaire - Secrétariat</title>
+    <link rel="stylesheet" href="../styles/secretaire.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    .left-container{
+            background-color: #2c3e50;
+            width: 20%;
+            height: 80vh;
+            position: fixed;
+            top: 80px;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
-        /* Conteneur principal */
-        .container {
-            padding: 40px;
-            max-width: 1200px;
-            margin: auto;
+        .container-principal{
+            background-color: #f5f7fa;
+            display: flex;
+            margin-top: 80px;
+            min-height: 80vh;
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
+        .right-container{
+            width: 80%;
+            margin-left: 20%;
+            padding: 30px;
+        }
+        .dashboard-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             margin-bottom: 30px;
         }
-          h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
+        .card{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
         }
-        /* Style du tableau */
-        table {
+        .card-title{
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .card-value{
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .card-icon{
+            font-size: 24px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .table-container{
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        table{
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        th, td {
-            padding: 18px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background-color: #3498db;
+        th{
+            background-color: #34495e;
             color: white;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            padding: 12px;
+            text-align: left;
         }
-        tr:last-child td {
-            border-bottom: none;
+        td{
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
         }
-        tr:hover {
+        tr:hover{
             background-color: #f9f9f9;
         }
-        </style>
-        </head>
-        
+        h2{
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .profile-etudiant{
+            padding: 20px;
+            border-bottom: 1px solid #34495e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .nav-menu{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-menu li{
+            margin: 0;
+        }
+        .nav-link{
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .nav-link:hover{
+            background-color: #34495e;
+            border-left-color: #3498db;
+            color: #3498db;
+            padding-left: 25px;
+        }
+        .nav-link i{
+            margin-right: 12px;
+            font-size: 18px;
+        }
+</style>
 <body>
-        
-        <div class="container">
-    <h1>Tableau de Bord Administratif</h1>
-    <br>
-    <h2>Matieres</h2>
-  
-    
-    <table>
-        <thead>
-            <tr>
-                
-                
-                <th>Matière</th>
-                 <th>Code matiere</th>
-                <th>Professeur Responsable</th>
-            
-                <th>Filière</th>
-                <th>Niveau</th>
-                <th>credit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+<header>
+    <nav>
+        <a href="secretaire.etudiants.php">Étudiants</a>
+        <a href="secretaire.notes.php">Notes</a>
+        <a href="secretaire.matiere.php">Matière</a>
+        <a href="#">Moyenne</a>
+        <a href="#">Filière</a>
+        <a href="#">Professeurs</a>
+    </nav>
+</header>
+<main class="container-principal">
+    <div class="left-container">
+        <div class="profile-etudiant">
+
+        </div>
+        <ul class="nav-menu">
+            <li><a href="secretaire.php" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="secretaire.etudiants.php" class="nav-link"><i class="fas fa-users"></i> Étudiants</a></li>
+            <li><a href="secretaire.notes.php" class="nav-link"><i class="fas fa-file-alt"></i> Notes</a></li>
+            <li><a href="secretaire.matiere.php" class="nav-link"><i class="fas fa-book"></i> Matière</a></li>
+            <li><a href="listefiliere.php" class="nav-link"><i class="fas fa-layer-group"></i> Filière</a></li>
+            <li><a href="listeProf.php" class="nav-link"><i class="fas fa-chalkboard-user"></i> Professeurs</a></li>
+            <li><a href="" class="nav-link"><i class="fas fa-cog"></i> Paramètres</a></li>
+            <li><a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+        </ul>
+    </div>
+    <div class="right-container">
+        <h2>Tableau de Bord</h2>
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <div class="card-title">Total Étudiants</div>
+                <div class="card-value">245</div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-book"></i></div>
+                <div class="card-title">Total Matières</div>
+                <div class="card-value">18</div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-chalkboard-user"></i></div>
+                <div class="card-title">Total Professeurs</div>
+                <div class="card-value">32</div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="card-title">Total Filières</div>
+                <div class="card-value">6</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h2>Liste des Matières</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Coef</th>
+                        <th>Professeur</th>
+                        <th>Filière</th>
+                        <th>Date d'Inscription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <!-- Les données des étudiants récents seront affichées ici -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
 
-    
+
 </body>
 </html>

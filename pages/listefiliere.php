@@ -7,19 +7,15 @@
     <link rel="stylesheet" href="../styles/secretaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<style>
-   
-</style>
 <body>
 
 <header>
     <nav>
         <a href="secretaire.etudiants.php">Étudiants</a>
         <a href="secretaire.notes.php">Notes</a>
-        <a href="secretaire.matiere.php">Matière</a>
-        <a href="#">Moyenne</a>
-        <a href="#">Filière</a>
-        <a href="#">Professeurs</a>
+        <a href="secretaire.matiere.php">Matière</a>    
+        <a href="listefiliere.php">Filière</a>
+        <a href="listeProf.php">Professeurs</a>
     </nav>
 </header>
 <main class="container-principal">
@@ -35,7 +31,7 @@
             <li><a href="listefiliere.php" class="nav-link"><i class="fas fa-layer-group"></i> Filière</a></li>
             <li><a href="listeProf.php" class="nav-link"><i class="fas fa-chalkboard-user"></i> Professeurs</a></li>
             <li><a href="" class="nav-link"><i class="fas fa-cog"></i> Paramètres</a></li>
-            <li><a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li> 
+            <li><a href="" class="nav-link"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
         </ul>
     </div>
     <div class="right-container">
@@ -64,7 +60,7 @@
         </div>
 
         <div class="table-container">
-            <h2>Étudiants Récents</h2>
+            <h2>Listes des Filières</h2>
             <table>
                 <thead>
                     <tr>

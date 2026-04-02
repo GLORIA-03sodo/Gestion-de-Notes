@@ -60,7 +60,11 @@
         </div>
 
         <div class="table-container">
-            <h2>Listes des Filières</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Listes des Filières</h2>
+                <button class="btn-add"><i class="fas fa-plus"></i> Ajouter une Filière</button>
+                 <button class="btn-add"><i class="fas fa-plus"></i> Suprimer une Filière</button>
+            </div>
             <table>
                 <thead>
                     <tr>

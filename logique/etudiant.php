@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $insert= $conn->prepare("INSERT INTO etudiant(Nom, Prenom, Email, date_de_naissance, mdp, sexe, Code_fi, Code_niv) values (?, ?, ?, ?, ?, ?, ?, ?)");
     if($insert->execute([$nom, $prenom, $email, $dnaiss, $dphash, $sexe, $filiere, $niveau])){
-        echo 
-    }
+
 }
+
 ?>

@@ -16,5 +16,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if($insert->execute([$nom, $prenom, $email, $dnaiss, $dphash, $sexe, $filiere, $niveau])){
 
 }
-
+}
 ?>
